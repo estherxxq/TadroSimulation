@@ -61,15 +61,16 @@ Run.trial <- function(){
     # Step 3: get outputs from network
       # update activation pattern
     outputs <- feedforward(inputs)
-    current.offset <- outputs[1] # get current offset and speed data, c(mode, value)
-    current.speed <- outputs[2]
-    offset[i] <- get.offset.mode(outputs[1]) # update offset and speed data here
-    speed[i] <- get.speed.mode(outputs[2])
+    current.offset <- max.offset * outputs[1] # get current offset, mapped to the min-max offset
+    current.speed <- (max.speed - min.speed) * outputs[2] + min.speed # get current speed, mapped to the min-max speed
     
+    offset[i] <- current.offset # update offset and speed data here
+    speed[i] <- current.speed
+
     # Step 4: Calculate new tadro location
     # get linear and angular velocity
     linear.v <- get.linear.v(current.speed, current.offset) # need them to find new tadro location
-    angular.v <- get.angular.v(linear.v, current.offset)
+    angular.v <- get.angular.v(current.speed, current.offset)
     v.linear[i] <- linear.v # update linear.v and angular.v data
     v.angular[i] <- angular.v
     

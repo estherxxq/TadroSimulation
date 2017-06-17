@@ -22,5 +22,6 @@ for(i in 1:n.iteration){
     theme_void()
   dev.off()
 }
-$ convert *.png -delay 5 -loop 0 binom.gif
+
+
 

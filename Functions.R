@@ -293,19 +293,14 @@ get.speed.mode <- function(b){
 
 # calculate linear velocity based on offset
 get.linear.v <- function(speed, offset){
-  if (offset == 0){ # if going straight, linear velocity = speed
-    v <- speed
-  } else {
-    v <- speed/2 # if going left or right, linear velocity = half of speed
-  }
-  return(v)
+  l.v <- speed * cos(offset)^2
+  return(l.v)
 } ########################
 
 # calculate angular velocity based on linear velocity, offset, and tadro radius
-get.angular.v <- function(linear.v, offset){
-  v <- (linear.v * -offset) / tadro.r    # in rad/s
-  v <- degree(v) # in degree/s
-  return(v)
+get.angular.v <- function(speed, offset){
+  a.v <- (speed * sin(offset) * abs(sin(offset))) / tadro.r # in degree/s
+  return(a.v)
 } ########################
 
 # get the new location of tadro

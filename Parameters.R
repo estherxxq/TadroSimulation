@@ -39,7 +39,10 @@ RShed.mark <- data.frame(x1 = rightShed.x, x2 = rightShed.x, y1 = -Sheds.y, y2 =
 ######################## TADRO MORPHOLOGY ########################
 tadro.r <- 0.1 # radius of tadro, in m
 mass <- 0.3 # mass of tadro, in kg
-tadro.speed <- 0.1 # basic speed (fast mode) of tadro, in m/s
+min.speed <- 0.05 # minimal speed of tadro, in m/s
+max.speed <- 0.1 # maximum speed of tadro, in m/s
+min.offset <- 0
+max.offset <- 45
 
 PR.ang <- 45 # angle of PR sensors away from center line
 IR.ang <- 90 # angle of IR sensors away from center line
@@ -75,6 +78,22 @@ sensor.angles <- c(lPR.ang, rPR.ang, lIR.ang, rIR.ang, tail.fixation, head.ang)
 n.input <- 4
 n.hidden <- 8
 n.output <- 2
+
+# this is used in plotting the network
+nodes <- data.frame(
+  x = c(3, 4, 5, 6,
+        1, 2, 3, 4, 5, 6, 7, 8,
+        4, 5),
+  y = c(4, 4, 4, 4,
+        3, 3, 3, 3, 3, 3, 3, 3,
+        2, 2),
+  node = c(1:14),
+  layer = c(rep("input", 4), 
+            rep("hidden", 8),
+            rep("output", 2))
+)
+
+
 
 # scalar for sensor inputs
 scalar <- 0.01
