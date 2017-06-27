@@ -32,10 +32,10 @@ Run.trial <- function(){
   
   ######## initialize tadro starting position ########
   # at bottom edge of pool, facing straight up (90 degrees)
-  tadro.x[1] <- start.x
-  tadro.y[1] <- start.y
+  tadro.x[1] <- 0.5
+  tadro.y[1] <- 0.5
   tadro.ang[1] <- start.ang
-  
+  i = 1
   ######## for each iteration ########
   for(i in 1:length(iteration)){
     ### Step 1: Locating Tadro center, sensors, tail fixation point and head
